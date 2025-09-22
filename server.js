@@ -21,9 +21,16 @@ dotenv_1.default.config();
 (0, db_1.default)();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://jk-autos.netlify.app",
+];
+
 app.use(
-  (0, cors_1.default)({
-    origin: "https://jkautoss.netlify.app/ || http://localhost:5173",
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
   })
 );
 // Routes
