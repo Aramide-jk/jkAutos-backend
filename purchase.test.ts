@@ -21,7 +21,8 @@ describe("Purchase Routes", () => {
       email: "test@example.com",
       password: "password123",
     });
-    userId = user._id;
+    // userId = user._id;
+    userId = user._id as mongoose.Types.ObjectId;
     token = jwt.sign({ id: userId }, process.env.JWT_SECRET!, {
       expiresIn: "1d",
     });

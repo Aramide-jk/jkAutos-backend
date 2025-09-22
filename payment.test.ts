@@ -19,8 +19,8 @@ describe("Payment Routes", () => {
       email: "test@example.com",
       password: "password123",
     });
-    userId = user._id;
-
+    // userId = user._id;
+    userId = user._id as mongoose.Types.ObjectId;
     const car: ICar = await Car.create({
       brand: "Honda",
       carModel: "Civic",
@@ -43,7 +43,7 @@ describe("Payment Routes", () => {
 
   describe("GET /api/payment/paystack/callback", () => {
     it("should verify payment and update purchase status to paid", async () => {
-      const reference = purchase._id.toString();
+      const reference = purchase?._id?.toString();
       const paystackVerifyResponse = {
         status: true,
         data: {
