@@ -16,12 +16,24 @@ const app = express();
 
 app.use(express.json());
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://jk-autos.netlify.app",
+];
+
 app.use(
   cors({
-    origin: "https://jkautoss.netlify.app/ || http://localhost:5173",
+    origin: allowedOrigins,
     credentials: true,
   })
 );
+
+// app.use(
+//   cors({
+//     origin: "https://jkautoss.netlify.app/ || http://localhost:5173",
+//     credentials: true,
+//   })
+// );
 
 // Routes
 app.use("/api/auth", authRoutes);
