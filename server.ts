@@ -21,12 +21,37 @@ const allowedOrigins = [
   "https://jkautoss.netlify.app",
 ];
 
+app.use((req, res, next) => {
+  console.log("[CORS] Incoming origin:", req.headers.origin);
+  next();
+});
+
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: (origin, callback) => {
+      // allow requests with no origin (eg. mobile apps, curl, server-to-server)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) !== -1) {
+        return callback(null, true);
+      } else {
+        return callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
+
+// const allowedOrigins = [
+//   "http://localhost:5173",
+//   "https://jkautoss.netlify.app",
+// ];
+
+// app.use(
+//   cors({
+//     origin: allowedOrigins,
+//     credentials: true,
+//   })
+// );
 
 // Routes
 app.use("/api/auth", authRoutes);
@@ -40,7 +65,6 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
-// Start server only if not in test environment
 if (process.env.NODE_ENV !== "test") {
   app.listen(PORT, () => {
     console.log(`Server running in development mode on port ${PORT}`);
