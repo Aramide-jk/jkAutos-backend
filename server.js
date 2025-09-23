@@ -35,7 +35,7 @@ app.use(express_1.default.json());
 
 app.use(
   cors_1({
-    origin: "https://jkautoss.netlify.app/",
+    origin: "https://jkautoss.netlify.app",
     credentials: true,
   })
 );
