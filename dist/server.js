@@ -17,10 +17,20 @@ dotenv_1.default.config();
 (0, db_1.default)();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+const allowedOrigins = [
+    // "http://localhost:5173",
+    "https://jkautoss.netlify.app/",
+];
 app.use((0, cors_1.default)({
-    origin: "https://jkautoss.netlify.app/",
+    origin: allowedOrigins,
     credentials: true,
 }));
+// app.use(
+//   cors({
+//     origin: "https://jkautoss.netlify.app/ || http://localhost:5173",
+//     credentials: true,
+//   })
+// );
 // Routes
 app.use("/api/auth", authRoutes_1.default);
 app.use("/api/cars", carRoutes_1.default);

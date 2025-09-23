@@ -17,8 +17,8 @@ const app = express();
 app.use(express.json());
 
 const allowedOrigins = [
-  "http://localhost:5173",
-  "https://jk-autos.netlify.app",
+  // "http://localhost:5173",
+  "https://jkautoss.netlify.app/",
 ];
 
 app.use(

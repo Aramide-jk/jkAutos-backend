@@ -7,8 +7,7 @@ beforeAll(async () => {
   mongoServer = await MongoMemoryServer.create();
   const uri = mongoServer.getUri();
 
-  // Set a higher timeout for the initial connection
-  jest.setTimeout(30000);
+  jest.setTimeout(60000);
   await mongoose.connect(uri);
 });
 

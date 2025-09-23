@@ -33,14 +33,9 @@ dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://jk-autos.netlify.app",
-];
-
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: "https://jkautoss.netlify.app/",
     credentials: true,
   })
 );

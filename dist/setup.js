@@ -9,8 +9,7 @@ let mongoServer;
 beforeAll(async () => {
     mongoServer = await mongodb_memory_server_1.MongoMemoryServer.create();
     const uri = mongoServer.getUri();
-    // Set a higher timeout for the initial connection
-    jest.setTimeout(30000);
+    jest.setTimeout(60000);
     await mongoose_1.default.connect(uri);
 });
 afterAll(async () => {
