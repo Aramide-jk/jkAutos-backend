@@ -18,7 +18,7 @@ app.use(express.json());
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://jkautoss.netlify.app/",
+  "https://jkautoss.netlify.app",
 ];
 
 app.use(
@@ -27,13 +27,6 @@ app.use(
     credentials: true,
   })
 );
-
-// app.use(
-//   cors({
-//     origin: "https://jkautoss.netlify.app/ || http://localhost:5173",
-//     credentials: true,
-//   })
-// );
 
 // Routes
 app.use("/api/auth", authRoutes);
